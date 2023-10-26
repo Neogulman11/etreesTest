@@ -8,22 +8,31 @@
 <title>Insert title here</title>
 </head>
 <body>
-		<div align="center" style="padding: 100px">
+    <div align="center" style="padding: 100px">
         <c:forEach items="${boardList}" var="board">
             <div>
                 <td align="center">${board.boardComment}</td> <br>
-               	<a>µø¿«</a>
-	            <input type="radio" name="selectedRadio" value="3"> 3
-	            <input type="radio" name="selectedRadio" value="2"> 2
-	            <input type="radio" name="selectedRadio" value="1"> 1
-	            <input type="radio" name="selectedRadio" value="0"> 0
-	            <input type="radio" name="selectedRadio" value="-1"> 2
-	            <input type="radio" name="selectedRadio" value="-2"> 1
-	            <input type="radio" name="selectedRadio" value="-3"> 0
-	            <a>∫Òµø¿«</a>
-		        </div>
+                <a>ÔøΩÔøΩÔøΩÔøΩ</a>
+                <input type="radio" name="selectedRadio" value="3">
+                <input type="radio" name="selectedRadio" value="2">
+                <input type="radio" name="selectedRadio" value="1">
+                <input type="radio" name="selectedRadio" value="0">
+                <input type="radio" name="selectedRadio" value="-1">
+                <input type="radio" name="selectedRadio" value="-2">
+                <input type="radio" name="selectedRadio" value="-3">
+                <a>ÔøΩÔøΩÔøΩÔøΩ</a>
+                </div>
         </c:forEach>
-		</div>
+
+        <c:choose>
+                <c:when test="${hasNextPage}">
+                    <a href="/mbti/mbtiTest.do?page=${currentPage + 1}">[Îã§Ïùå]</a>
+                </c:when>
+                <c:otherwise>
+                    <a href="/mbti/mbtiResult.do">[Ï†úÏ∂úÌïòÍ∏∞]</a>
+                </c:otherwise>
+            </c:choose>
+    </div>
 
 </body>
 </html>

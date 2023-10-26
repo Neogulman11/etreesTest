@@ -19,5 +19,16 @@ public class MbtiDaoImpl implements MbtiDao{
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("mbti.testList");
 	}
-
+	@Override
+	public int totalCount() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("mbti.totalCount");
+	}
+	@Override
+	public List<BoardVo> selectTestListPaged(int offset, int pageSize) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("offset", offset);
+		params.put("pageSize", pageSize);
+		return sqlSession.selectList("mbti.selectTestListPaged", params);
+	}
 }

@@ -6,6 +6,9 @@ import com.spring.board.vo.BoardVo;
 
 public interface MbtiDao {
 
-	public List<BoardVo> selectTestList();
+	public List<BoardVo> selectTestList() throws Exception;
 
+	public int totalCount() throws Exception;
+
+	public List<BoardVo> selectTestListPaged(int offset, int pageSize) throws Exception;
 }

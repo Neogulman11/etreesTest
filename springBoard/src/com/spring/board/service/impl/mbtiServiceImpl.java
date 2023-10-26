@@ -20,5 +20,14 @@ public class mbtiServiceImpl implements mbtiService{
 		// TODO Auto-generated method stub
 		return mbtiDao.selectTestList();
 	}
+	@Override
+	public int totalCount() throws Exception{
+		// TODO Auto-generated method stub
+		return mbtiDao.totalCount();
+	}
+	@Override
+	public List<BoardVo> selectTestListPaged(int offset, int pageSize) {
+		return mbtiDao.selectTestListPaged(offset, pageSize);
+	}
 
 }
