@@ -8,7 +8,7 @@
 <title>main</title>
 </head>
 <body>
-	<h2>무료 성격유형검사123123</h2>
+	<h2>성격유형검사</h2>
 	<button id="startBt" onclick="testStart()">시작하기</button>
 </body>
 <script>

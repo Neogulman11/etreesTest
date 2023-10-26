@@ -1,0 +1,15 @@
+package com.spring.board.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.spring.board.dao.MbtiDao;
+import com.spring.board.service.mbtiService;
+
+@Service
+public class mbtiServiceImpl implements mbtiService{
+	
+	@Autowired
+	MbtiDao mbtiDao;
+
+}

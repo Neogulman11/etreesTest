@@ -1,0 +1,20 @@
+package com.spring.board.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+@Controller
+public class MbtiController {
+	
+	@RequestMapping(value = "/mbti/mbtiMain.do", method = RequestMethod.GET)
+	public String mainForm() {
+		return "mbti/mbtiMain";
+	}
+	
+	@RequestMapping(value = "/mbti/mbtiTest.do", method = RequestMethod.GET)
+	public String testForm() {
+		return "mbti/mbtiTest";
+	}
+	
+}

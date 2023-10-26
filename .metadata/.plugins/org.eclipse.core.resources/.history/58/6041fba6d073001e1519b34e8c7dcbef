@@ -1,0 +1,10 @@
+package com.spring.board.dao.impl;
+
+import org.springframework.stereotype.Repository;
+
+import com.spring.board.dao.MbtiDao;
+
+@Repository
+public class MbtiDaoImpl implements MbtiDao{
+
+}

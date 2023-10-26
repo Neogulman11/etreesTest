@@ -8,6 +8,22 @@
 <title>Insert title here</title>
 </head>
 <body>
+		<div align="center" style="padding: 100px">
+        <c:forEach items="${boardList}" var="board">
+            <div>
+                <td align="center">${board.boardComment}</td> <br>
+               	<a>동의</a>
+	            <input type="radio" name="selectedRadio" value="3"> 3
+	            <input type="radio" name="selectedRadio" value="2"> 2
+	            <input type="radio" name="selectedRadio" value="1"> 1
+	            <input type="radio" name="selectedRadio" value="0"> 0
+	            <input type="radio" name="selectedRadio" value="-1"> 2
+	            <input type="radio" name="selectedRadio" value="-2"> 1
+	            <input type="radio" name="selectedRadio" value="-3"> 0
+	            <a>비동의</a>
+		        </div>
+        </c:forEach>
+		</div>
 
 </body>
 </html>
