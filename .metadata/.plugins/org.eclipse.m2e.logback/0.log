@@ -1,0 +1,18 @@
+2023-10-24 15:15:51,577 [Worker-4: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2023-10-24 15:17:09,223 [Worker-10: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.spring:board:1.0.0-BUILD-SNAPSHOT @ C:\Users\etrees\eclipse-workspace\kim\springBoard\WebContent\META-INF\maven\com.spring\board\pom.xml.
+2023-10-24 15:17:11,549 [Worker-10: Building] WARN  o.a.m.s.f.DefaultMavenResourcesFiltering - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-10-24 15:17:11,551 [Worker-10: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\etrees\eclipse-workspace\kim\springBoard\WebContent\META-INF\maven\com.spring\board\src\main\resources
+2023-10-24 15:17:11,557 [Worker-10: Building] WARN  o.a.m.s.f.DefaultMavenResourcesFiltering - Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-10-24 15:17:11,558 [Worker-10: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\etrees\eclipse-workspace\kim\springBoard\WebContent\META-INF\maven\com.spring\board\src\test\resources
+2023-10-24 15:19:49,210 [Worker-4: https://downloads.apache.org/geronimo/eclipse/updates/content.jar] INFO  o.a.h.c.h.i.c.HttpRequestRetryExec - Recoverable I/O exception (java.net.SocketException) caught when processing request to {s}->https://downloads.apache.org:443
+2023-10-24 15:20:08,693 [Worker-0: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2023-10-24 15:45:52,666 [Worker-0: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2023-10-24 20:09:20,418 [Worker-0: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2023-10-25 09:28:08,388 [Worker-1: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2023-10-25 09:28:17,944 [Worker-1: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://mesir.googlecode.com/svn/trunk/mavenrepo/com/oracle/ojdbc14/10.2.0.4.0/ojdbc14-10.2.0.4.0.jar
+2023-10-25 09:28:18,685 [Worker-1: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/oracle/ojdbc14/10.2.0.4.0/ojdbc14-10.2.0.4.0.jar
+2023-10-25 20:00:41,777 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2023-10-26 09:24:37,370 [Worker-1: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2023-10-26 09:27:52,296 [Worker-4: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://mesir.googlecode.com/svn/trunk/mavenrepo/com/oracle/ojdbc14/10.2.0.4.0/ojdbc14-10.2.0.4.0.jar
+2023-10-26 09:27:52,672 [Worker-4: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/oracle/ojdbc14/10.2.0.4.0/ojdbc14-10.2.0.4.0.jar
+2023-10-26 14:48:40,176 [Worker-0: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
