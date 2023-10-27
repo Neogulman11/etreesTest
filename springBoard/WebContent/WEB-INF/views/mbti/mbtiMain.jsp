@@ -8,8 +8,10 @@
 <title>main</title>
 </head>
 <body>
-	<h2>성격유형검사</h2>
-	<button id="startBt" onclick="testStart()">시작하기</button>
+	<div align="center">
+		<h2>성격유형검사</h2>
+		<button id="startBt" onclick="testStart()">시작하기</button>
+	</div>
 </body>
 <script>
 	function testStart()  {

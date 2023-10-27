@@ -1,45 +1,78 @@
 package com.spring.board.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.spring.board.service.boardService;
 import com.spring.board.service.mbtiService;
 import com.spring.board.vo.BoardVo;
+import com.spring.board.vo.PageVo;
 
 @Controller
 public class MbtiController {
 	@Autowired
 	mbtiService mbtiService;
+	boardService boardService;
 	
 	@RequestMapping(value = "/mbti/mbtiMain.do", method = RequestMethod.GET)
 	public String mainForm() {
 		return "mbti/mbtiMain";
 	}
-
+	
 	@RequestMapping(value = "/mbti/mbtiTest.do", method = RequestMethod.GET)
-	public String testForm(Model model, @RequestParam(name = "page", defaultValue = "1") int page) throws Exception {
-		int pageSize = 5; // 페이지당 게시글 수
-		int totalCount = mbtiService.totalCount(); // 전체 아이템 수를 가져오는 메소드
-		int totalPages = (int) Math.ceil((double) totalCount / pageSize);
-		boolean hasNextPage = page < totalPages; // 다음 페이지가 있는지 여부
+	public String testForm(Model model, PageVo pageVo) throws Exception {
+	    List<BoardVo> boardList = new ArrayList<BoardVo>();
+	    
+	    int page = 1;
+	    int totalCnt = 0;
 
-		List<BoardVo> boardList = new ArrayList<BoardVo>();
-
-		// 페이지 번호에 따른 데이터를 가져오는 메소드를 구현해야 합니다.
-		int offset = (page - 1) * pageSize;
-		boardList = mbtiService.selectTestListPaged(offset, pageSize);
-
-		model.addAttribute("boardList", boardList);
-		model.addAttribute("currentPage", page);
-		model.addAttribute("hasNextPage", hasNextPage);
-
-		return "mbti/mbtiTest";
+	    if(pageVo.getPageNo() == 0){
+			pageVo.setPageNo(page);;
+		}
+	    
+	    boardList = mbtiService.selectTestListPaged(pageVo);
+	    totalCnt = mbtiService.totalCount();
+	    
+	    
+	    model.addAttribute("boardList", boardList);
+	    model.addAttribute("totalCnt", totalCnt);
+	    model.addAttribute("currentPage", pageVo);
+	    
+	    
+	    return "mbti/mbtiTest";
 	}
+	
+	@RequestMapping(value = "/mbti/mbtiResult.do", method = RequestMethod.GET)
+	public String resultForm() {
+		return "mbti/mbtiResult";
+	}
+	
+	@RequestMapping(value = "/mbti/mbtiResult.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String handleAjaxRequest(@RequestBody Map<String, String> sessionData, HttpSession session) throws Exception  {
+
+	    String previousData = (String) session.getAttribute("yourSessionAttributeKey");
+
+	    
+	    Map<String, String> resultData = new HashMap<String, String>();
+
+	    
+	    return new ObjectMapper().writeValueAsString(resultData);
+	}
+
 	
 }

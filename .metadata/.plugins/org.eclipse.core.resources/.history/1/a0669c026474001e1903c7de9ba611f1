@@ -1,0 +1,71 @@
+package com.spring.board.service.impl;
+
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.spring.board.dao.MbtiDao;
+import com.spring.board.service.mbtiService;
+import com.spring.board.vo.BoardVo;
+import com.spring.board.vo.PageVo;
+
+@Service
+public class mbtiServiceImpl implements mbtiService{
+	
+	@Autowired
+	MbtiDao mbtiDao;
+
+	@Override
+	public List<BoardVo> selectTestList() throws Exception {
+		// TODO Auto-generated method stub
+		return mbtiDao.selectTestList();
+	}
+	@Override
+	public int totalCount() throws Exception{
+		// TODO Auto-generated method stub
+		return mbtiDao.totalCount();
+	}
+	@Override
+	public List<BoardVo> selectTestListPaged(int offset, int pageSize) throws Exception{
+		return mbtiDao.selectTestListPaged(offset, pageSize);
+	}
+	
+	int pageLimit = 5; // 한 페이지당 보여줄 글 갯수
+	int blockLimit = 3;
+	@Override
+	public List<BoardVo> pagingList(int page) throws Exception {
+		// TODO Auto-generated method stub
+		int pagingStart = (page - 1) * pageLimit;
+        Map<String, Integer> pagingParams = new HashMap<>();
+        pagingParams.put("start", pagingStart);
+        pagingParams.put("limit", pageLimit);
+        List<BoardVo> pagingList = mbtiDao.pagingList(pagingParams);
+
+        return pagingList;
+	}
+	@Override
+	public PageVo pagingParam(int page) throws Exception {
+		// TODO Auto-generated method stub
+		// 전체 글 갯수 조회
+        int boardCount = mbtiDao.totalCount();
+        // 전체 페이지 갯수 계산(10/3=3.33333 => 4)
+        int maxPage = (int) (Math.ceil((double) boardCount / pageLimit));
+        // 시작 페이지 값 계산(1, 4, 7, 10, ~~~~)
+        int startPage = (((int)(Math.ceil((double) page / blockLimit))) - 1) * blockLimit + 1;
+        // 끝 페이지 값 계산(3, 6, 9, 12, ~~~~)
+        int endPage = startPage + blockLimit - 1;
+        if (endPage > maxPage) {
+            endPage = maxPage;
+        }
+        PageVo pageVo = new PageVo();
+        pageVo.setPageNo(pageNo);
+        pageVo.setMaxPage(maxPage);
+        pageVo.setStartPage(startPage);
+        pageVo.setEndPage(endPage);
+        return pageDTO;
+	}
+
+}

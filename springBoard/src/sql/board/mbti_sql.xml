@@ -7,7 +7,7 @@
 	    <result property="boardComment" column="BOARD_COMMENT"/>
 	</resultMap>
 	
-	<select id="testList" resultMap="boardVo">
+	<select id="selectTestList" resultMap="boardVo">
 		SELECT 
 	    BOARD_TYPE
 	    , BOARD_NUM
@@ -20,11 +20,20 @@
 		SELECT COUNT(*) FROM BOARD
 	</select>
 
-	<select id="selectTestListPaged" resultType="com.spring.board.vo.BoardVo">
-		SELECT * FROM
-		BOARD
-		ORDER BY BOARD_COMMENT
-		LIMIT
-		#{offset}, #{pageSize}
+	<select id="selectTestListPaged" parameterType="com.spring.board.vo.PageVo" resultMap="boardVo">
+	    SELECT 
+	    BOARD_TYPE
+	    , BOARD_NUM
+	    , BOARD_COMMENT
+	    FROM 
+	    (
+	        SELECT
+	        BOARD_TYPE
+	        , BOARD_NUM
+	        , BOARD_COMMENT
+	        , ROW_NUMBER() OVER(ORDER BY BOARD_NUM DESC) AS NUMROW
+	        FROM BOARD   
+	    )
+	    WHERE NUMROW BETWEEN (#{pageNo}-1)*5 + 1 AND (#{pageNo})*5
 	</select>
 </mapper>
