@@ -1,7 +1,0 @@
-package com.spring.board.dao.impl;
-
-import com.spring.board.dao.ComcodeDao;
-
-public class ComcodeDaoImpl implements ComcodeDao{
-
-}

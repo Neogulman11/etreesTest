@@ -60,18 +60,16 @@ public class MbtiController {
 	public String resultForm() {
 		return "mbti/mbtiResult";
 	}
-	
+
 	@RequestMapping(value = "/mbti/mbtiResult.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String handleAjaxRequest(@RequestBody Map<String, String> sessionData, HttpSession session) throws Exception  {
+		// 세션에 데이터 저장
+		session.setAttribute("session", sessionData);
 
-	    String previousData = (String) session.getAttribute("yourSessionAttributeKey");
+		Map<String, String> sessionData = (Map<String, String>) session.getAttribute("session");
 
-	    
-	    Map<String, String> resultData = new HashMap<String, String>();
-
-	    
-	    return new ObjectMapper().writeValueAsString(resultData);
+		return new ObjectMapper().writeValueAsString(resultData);
 	}
 
 	

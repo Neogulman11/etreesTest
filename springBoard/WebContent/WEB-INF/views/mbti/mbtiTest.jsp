@@ -23,7 +23,6 @@
                     <input type="radio" name="selectedRadio_${board.boardNum}" value="-3">
 	                <a>비동의</a>
                 </div>
-            
             </fieldset>
         </c:forEach>
         <c:if test="${totalCnt > currentPage.pageNo * 5}">
@@ -43,32 +42,30 @@
     </div>
 </body>
 <script type="text/javascript">
-	function updateSessionOnSubmit(boardType) {
-	    var radioButtons = document.querySelectorAll('input[type="radio"]:checked');
-	    var selectedValue = 0;
-	
-	    radioButtons.forEach(function (radioButton) {
-	        selectedValue += parseInt(radioButton.value);
-	    });
-	
-	    sessionStorage.setItem('boardType_' + boardType, selectedValue.toString());
-	}
-	
+
 	function nextSubmit() {
         var radioButtons = document.querySelectorAll('input[type="radio"]:checked');
         if (radioButtons.length < 5) {
             alert("선택되지 않은 항목이 있습니다.");
             event.preventDefault();
         } else {
+            radioButtons.forEach(function (radioButton) {
+                var boardType = radioButton.getAttribute("data-boardtype"); // Extract boardType from a custom data attribute
+                var selectedValue = parseInt(radioButton.value);
+                var sessionValue = sessionStorage.getItem(boardType) || "0";
+
+                sessionValue = parseInt(sessionValue) + selectedValue;
+
+                sessionStorage.setItem(boardType, sessionValue.toString());
+            });
+
             var pageNoInput = document.getElementById("pageNo");
             var currentPage = parseInt(pageNoInput.value);
             pageNoInput.value = currentPage + 1;
-            
+
             var currentURL = window.location.href;
             var newURL = currentURL.replace(/pageNo=\d+/, "pageNo=" + (currentPage + 1));
             window.location.href = newURL;
-            
-            
         }
     }
 	
