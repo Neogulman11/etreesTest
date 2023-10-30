@@ -62,16 +62,17 @@ public class MbtiController {
 
 	@RequestMapping(value = "/mbti/mbtiResult.do", method = RequestMethod.POST)
 	@ResponseBody
-	public String handleAjaxRequest(@RequestBody Map<String, String> sessionData, HttpSession session,
-			Model model) throws Exception {
+	public ModelAndView handleAjaxRequest(@RequestBody Map<String, String> sessionData, HttpSession session) throws Exception {
 	    session.setAttribute("session", sessionData);
 
 	    String resultData = mbtiService.generateMBTIResult(sessionData);
 	    System.out.println("resultData: " + resultData);
 
-	    model.addAttribute("resultData",resultData);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/mbti/mbtiResult");
+		mav.addObject("resultData", resultData);
 
-	    return resultData;
+	    return mav;
 	}
 
 	

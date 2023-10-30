@@ -136,8 +136,9 @@
 	            url: "/mbti/mbtiResult.do",
 	            data: JSON.stringify(sessionData),
 	            contentType: "application/json",
+	            dataType: "json",
 	            success: function(response) {
-	            	var result = response.resultDataJson;
+	            	var result = response.resultData;
 
 	                window.location.href = "mbtiResult.do"; 
 	            },
