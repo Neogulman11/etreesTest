@@ -29,17 +29,33 @@ public class mbtiServiceImpl implements mbtiService{
 		return mbtiDao.totalCount();
 	}
 	
-//	@Override
-//	public List<BoardVo> selectTestListPaged(int page, int pageSize) throws Exception {
-//		// TODO Auto-generated method stub
-//		int start = (page - 1) * pageSize;
-//        return mbtiDao.selectTestListPaged(start, pageSize);
-//	}
-	
+
 	@Override
 	public List<BoardVo> selectTestListPaged(PageVo pageVo) throws Exception {
 		// TODO Auto-generated method stub
 		return mbtiDao.selectTestListPaged(pageVo);
+	}
+	@Override
+	public String generateMBTIResult(Map<String, String> sessionData) throws Exception {
+		// TODO Auto-generated method stub
+		Integer eValue = Integer.parseInt(sessionData.get("E"));
+	    Integer iValue = Integer.parseInt(sessionData.get("I"));
+	    Integer sValue = Integer.parseInt(sessionData.get("S"));
+	    Integer nValue = Integer.parseInt(sessionData.get("N"));
+	    Integer fValue = Integer.parseInt(sessionData.get("F"));
+	    Integer tValue = Integer.parseInt(sessionData.get("T"));
+	    Integer jValue = Integer.parseInt(sessionData.get("J"));
+	    Integer pValue = Integer.parseInt(sessionData.get("P"));
+
+	    StringBuilder resultData = new StringBuilder();
+
+	    resultData.append((eValue >= iValue) ? "E" : "I");
+	    resultData.append((sValue >= nValue) ? "S" : "N");
+	    resultData.append((fValue >= tValue) ? "F" : "T");
+	    resultData.append((jValue >= pValue) ? "J" : "P");
+	    
+	    String sortedResult = new String(resultData);
+	    return sortedResult;
 	}
 
 }

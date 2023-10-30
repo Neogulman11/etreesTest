@@ -8,23 +8,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-    <div>
-        <h2>ë‹¹ì‹ ì˜ ìœ í˜•ì€</h2>
+    <div align="center">
+        <h2>´ç½ÅÀÇ À¯ÇüÀº</h2>
+		<p>°á°ú: ${resultData}</p>
         <div align="center">
-            <c:set var="eiValue" value="${session['EI']}" />
-            <c:set var="ieValue" value="${session['IE']}" />
-            <c:set var="snValue" value="${session['SN']}" />
-            <c:set var="nsValue" value="${session['NS']}" />
-            <c:set var="tfValue" value="${session['TF']}" />
-            <c:set var="ftValue" value="${session['FT']}" />
-            <c:set var="jpValue" value="${session['JP']}" />
-            <c:set var="pjValue" value="${session['PJ']}" />
-
-            <p>${eiValue > ieValue ? 'E' : 'I'}</p>
-            <p>${snValue > nsValue ? 'S' : 'N'}</p>
-            <p>${tfValue > ftValue ? 'T' : 'F'}</p>
-            <p>${jpValue > pjValue ? 'J' : 'P'}</p>
-        </div>
+			<button id="startBt" onclick="reStart()">Ã³À½À¸·Î</button>
+		</div>
     </div>
 </body>
+<script type="text/javascript">
+	function reStart()  {
+		window.location.href = "/mbti/mbtiMain.do";	
+	}
+	
+</script>
 </html>

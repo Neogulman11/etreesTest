@@ -26,7 +26,6 @@ import com.spring.board.vo.PageVo;
 public class MbtiController {
 	@Autowired
 	mbtiService mbtiService;
-	boardService boardService;
 	
 	@RequestMapping(value = "/mbti/mbtiMain.do", method = RequestMethod.GET)
 	public String mainForm() {
@@ -57,18 +56,22 @@ public class MbtiController {
 	}
 	
 	@RequestMapping(value = "/mbti/mbtiResult.do", method = RequestMethod.GET)
-	public String resultForm() {
+	public String resultForm(Model model) {
 		return "mbti/mbtiResult";
 	}
 
 	@RequestMapping(value = "/mbti/mbtiResult.do", method = RequestMethod.POST)
 	@ResponseBody
-	public String handleAjaxRequest(@RequestBody Map<String, String> sessionData, HttpSession session) throws Exception  {
-		session.setAttribute("session", sessionData);
+	public String handleAjaxRequest(@RequestBody Map<String, String> sessionData, HttpSession session,
+			Model model) throws Exception {
+	    session.setAttribute("session", sessionData);
 
-		Map<String, String> resultData = new HashMap<String, String>();
+	    String resultData = mbtiService.generateMBTIResult(sessionData);
+	    System.out.println("resultData: " + resultData);
 
-		return new ObjectMapper().writeValueAsString(resultData);
+	    model.addAttribute("resultData",resultData);
+
+	    return resultData;
 	}
 
 	

@@ -14,16 +14,15 @@
                 <a align="center">${board.boardComment}</a> <br>
                 <div>
 	                <a>동의</a>
-	                <input type="radio" name="selectedRadio_${board.boardNum}" value="3">
-                    <input type="radio" name="selectedRadio_${board.boardNum}" value="2">
-                    <input type="radio" name="selectedRadio_${board.boardNum}" value="1">
-                    <input type="radio" name="selectedRadio_${board.boardNum}" value="0">
-                    <input type="radio" name="selectedRadio_${board.boardNum}" value="-1">
-                    <input type="radio" name="selectedRadio_${board.boardNum}" value="-2">
-                    <input type="radio" name="selectedRadio_${board.boardNum}" value="-3">
+	                <input type="radio" name="selectedRadio_${board.boardNum}" id="${board.boardType}" value="1">
+                    <input type="radio" name="selectedRadio_${board.boardNum}" id="${board.boardType}" value="2">
+                    <input type="radio" name="selectedRadio_${board.boardNum}" id="${board.boardType}" value="3">
+                    <input type="radio" name="selectedRadio_${board.boardNum}" id="${board.boardType}" value="4">
+                    <input type="radio" name="selectedRadio_${board.boardNum}" id="${board.boardType}" value="5">
+                    <input type="radio" name="selectedRadio_${board.boardNum}" id="${board.boardType}" value="6">
+                    <input type="radio" name="selectedRadio_${board.boardNum}" id="${board.boardType}" value="7">
 	                <a>비동의</a>
                 </div>
-            
             </fieldset>
         </c:forEach>
         <c:if test="${totalCnt > currentPage.pageNo * 5}">
@@ -34,68 +33,121 @@
 		</c:if>
 		
 		<c:if test="${currentPage.pageNo * 5 >= totalCnt}">
-		    <button id="submitButton" onclick="updateSessionOnSubmit('${board.boardType}')">제출하기</button>
+		    <button id="submitButton" >제출하기</button>
 		</c:if>
 
-		<c:forEach items="${boardList}" var="board">
-		    <c:out value="${board.boardType}" />
-		</c:forEach>
     </div>
 </body>
 <script type="text/javascript">
-	function updateSessionOnSubmit(boardType) {
-	    var radioButtons = document.querySelectorAll('input[type="radio"]:checked');
-	    var selectedValue = 0;
-	
-	    radioButtons.forEach(function (radioButton) {
-	        selectedValue += parseInt(radioButton.value);
-	    });
-	
-	    sessionStorage.setItem('boardType_' + boardType, selectedValue.toString());
-	}
-	
+
 	function nextSubmit() {
         var radioButtons = document.querySelectorAll('input[type="radio"]:checked');
         if (radioButtons.length < 5) {
             alert("선택되지 않은 항목이 있습니다.");
             event.preventDefault();
         } else {
+        	radioButtons.forEach(function (radioButton) {
+        		var selectedValue = parseInt(radioButton.value);
+                var boardType = radioButton.id;
+
+                var score = 0;
+
+                if (selectedValue === 1) {
+                    score = 3;
+                } else if (selectedValue === 2) {
+                    score = 2;
+                } else if (selectedValue === 3) {
+                    score = 1;
+                } else if (selectedValue === 4) {
+                    score = 0;
+                } else if (selectedValue === 5) {
+                    score = 1;
+                } else if (selectedValue === 6) {
+                    score = 2;
+                } else if (selectedValue === 7) {
+                    score = 3;
+                }
+
+                var charToUse = selectedValue <= 3 ? boardType.charAt(0) : boardType.charAt(1);
+
+                var sessionKey = charToUse;
+                var sessionValue = sessionStorage.getItem(sessionKey) || "0";
+                sessionValue = parseInt(sessionValue) + score;
+                sessionStorage.setItem(sessionKey, sessionValue.toString());
+            });
+
             var pageNoInput = document.getElementById("pageNo");
             var currentPage = parseInt(pageNoInput.value);
             pageNoInput.value = currentPage + 1;
-            
+
             var currentURL = window.location.href;
             var newURL = currentURL.replace(/pageNo=\d+/, "pageNo=" + (currentPage + 1));
             window.location.href = newURL;
-            
-            
         }
     }
 	
-    $j("#submitButton").click(function() {
-        var sessionData = {};
-        for (var i = 0; i < sessionStorage.length; i++) {
-            var key = sessionStorage.key(i);
-            var value = sessionStorage.getItem(key);
-            sessionData[key] = value;
-        }
+	$j("#submitButton").click(function() {
+	    var radioButtons = document.querySelectorAll('input[type="radio"]:checked');
+	    if (radioButtons.length < 5) {
+	        alert("선택되지 않은 항목이 있습니다.");
+	        event.preventDefault();
+	    } else {
+	        radioButtons.forEach(function (radioButton) {
+	        	var selectedValue = parseInt(radioButton.value);
+                var boardType = radioButton.id;
 
-        $j.ajax({
-            type: "POST",
-            url: "/mbti/mbtiResult.do",
-            data: JSON.stringify(sessionData),
-            contentType: "application/json",
-            success: function(response) {
-                var result = JSON.parse(response);
+                var score = 0;
 
-                // 페이지 리다이렉션
-                window.location.href = "mbtiResult.do"; 
-            },
-            error: function(xhr, textStatus, errorThrown) {
-                // 오류 처리를 수행할 수 있습니다.
-            }
-        });
-    });
+                if (selectedValue === 1) {
+                    score = 3;
+                } else if (selectedValue === 2) {
+                    score = 2;
+                } else if (selectedValue === 3) {
+                    score = 1;
+                } else if (selectedValue === 4) {
+                    score = 0;
+                } else if (selectedValue === 5) {
+                    score = 1;
+                } else if (selectedValue === 6) {
+                    score = 2;
+                } else if (selectedValue === 7) {
+                    score = 3;
+                }
+
+                var charToUse = selectedValue <= 3 ? boardType.charAt(0) : boardType.charAt(1);
+
+                var sessionKey = charToUse;
+                var sessionValue = sessionStorage.getItem(sessionKey) || "0";
+                sessionValue = parseInt(sessionValue) + score;
+                sessionStorage.setItem(sessionKey, sessionValue.toString());
+
+            });
+
+	        var sessionData = {};
+
+	        for (var i = 0; i < sessionStorage.length; i++) {
+	            var key = sessionStorage.key(i);
+	            var value = sessionStorage.getItem(key);
+	            sessionData[key] = value;
+	        }
+
+	        $j.ajax({
+	            type: "POST",
+	            url: "/mbti/mbtiResult.do",
+	            data: JSON.stringify(sessionData),
+	            contentType: "application/json",
+	            success: function(response) {
+	            	var result = response.resultDataJson;
+
+	                window.location.href = "mbtiResult.do"; 
+	            },
+	            error: function(xhr, textStatus, errorThrown) {
+
+	            }
+	        });
+	    }
+	});
+
 	
 </script>
 </html>

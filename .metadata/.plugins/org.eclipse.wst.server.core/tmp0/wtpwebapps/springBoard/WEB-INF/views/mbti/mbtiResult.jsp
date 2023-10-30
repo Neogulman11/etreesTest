@@ -8,6 +8,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+    <div align="center">
+        <h2>당신의 유형은</h2>
+		<p>결과: ${resultData}</p>
+        <div align="center">
+			<button id="startBt" onclick="reStart()">처음으로</button>
+		</div>
+    </div>
 </body>
+<script type="text/javascript">
+	function reStart()  {
+		window.location.href = "/mbti/mbtiMain.do";	
+	}
+	
+</script>
 </html>

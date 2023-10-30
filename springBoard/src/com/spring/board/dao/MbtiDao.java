@@ -12,9 +12,7 @@ public interface MbtiDao {
 
 	public int totalCount() throws Exception;
 
-//	public List<BoardVo> selectTestListPaged(int start, int pageSize) throws Exception;
 
-	
 	public List<BoardVo> selectTestListPaged(PageVo pageVo) throws Exception;
 	
 }
