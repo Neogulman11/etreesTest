@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.board.service.boardService;
 import com.spring.board.service.mbtiService;
@@ -62,17 +63,15 @@ public class MbtiController {
 
 	@RequestMapping(value = "/mbti/mbtiResult.do", method = RequestMethod.POST)
 	@ResponseBody
-	public ModelAndView handleAjaxRequest(@RequestBody Map<String, String> sessionData, HttpSession session) throws Exception {
-	    session.setAttribute("session", sessionData);
-
-	    String resultData = mbtiService.generateMBTIResult(sessionData);
-	    System.out.println("resultData: " + resultData);
-
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/mbti/mbtiResult");
-		mav.addObject("resultData", resultData);
-
-	    return mav;
+	public Map<String, String> handleAjaxRequest(@RequestBody Map<String, String> sessionData, HttpSession session) throws Exception {
+	    session.setAttribute("resultData", mbtiService.generateMBTIResult(sessionData));
+	    
+	    
+	    Map<String, String> responseMap = new HashMap<>();
+	    responseMap.put("resultDataJson", (String) session.getAttribute("resultData"));
+	    System.out.println("Response Map Contents: " + responseMap.get("resultDataJson"));
+	    
+	    return responseMap;
 	}
 
 	

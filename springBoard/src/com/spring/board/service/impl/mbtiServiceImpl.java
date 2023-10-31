@@ -2,6 +2,9 @@ package com.spring.board.service.impl;
 
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,23 +40,82 @@ public class mbtiServiceImpl implements mbtiService{
 	}
 	@Override
 	public String generateMBTIResult(Map<String, String> sessionData) throws Exception {
-		// TODO Auto-generated method stub
-		Integer eValue = Integer.parseInt(sessionData.get("E"));
-	    Integer iValue = Integer.parseInt(sessionData.get("I"));
-	    Integer sValue = Integer.parseInt(sessionData.get("S"));
-	    Integer nValue = Integer.parseInt(sessionData.get("N"));
-	    Integer fValue = Integer.parseInt(sessionData.get("F"));
-	    Integer tValue = Integer.parseInt(sessionData.get("T"));
-	    Integer jValue = Integer.parseInt(sessionData.get("J"));
-	    Integer pValue = Integer.parseInt(sessionData.get("P"));
+	    // TODO Auto-generated method stub
+		Map<String, String> sortedMap = new TreeMap<>(sessionData);
+		
+		String eKey = "E";
+		String iKey = "I";
+		String sKey = "S";
+		String nKey = "N";
+		String fKey = "F";
+		String tKey = "T";
+		String jKey = "J";
+		String pKey = "P";
+		
+		Integer eValue = Integer.parseInt(sortedMap.get(eKey) != null ? sessionData.get(eKey) : "0");
+		Integer iValue = Integer.parseInt(sortedMap.get(iKey) != null ? sessionData.get(iKey) : "0");
+		Integer sValue = Integer.parseInt(sessionData.get("S") != null ? sessionData.get("S") : "0");
+	    Integer nValue = Integer.parseInt(sessionData.get("N") != null ? sessionData.get("N") : "0");
+	    Integer fValue = Integer.parseInt(sessionData.get("F") != null ? sessionData.get("F") : "0");
+	    Integer tValue = Integer.parseInt(sessionData.get("T") != null ? sessionData.get("T") : "0");
+	    Integer jValue = Integer.parseInt(sessionData.get("J") != null ? sessionData.get("J") : "0");
+	    Integer pValue = Integer.parseInt(sessionData.get("P") != null ? sessionData.get("P") : "0");
+		
+		StringBuilder resultData = new StringBuilder();
+		
+		if (eValue > iValue) {
+			resultData.append(eKey);
+		} else if (eValue < iValue){
+			resultData.append(iKey);
+		} else {
+			List<String> keys = new ArrayList<>();
+	        keys.add(eKey);
+	        keys.add(iKey);
+	        Collections.sort(keys);
 
-	    StringBuilder resultData = new StringBuilder();
+	        resultData.append(keys.get(0));
+		}
+		
+		if (sValue > nValue) {
+			resultData.append(sKey);
+		} else if (sValue < nValue){
+			resultData.append(nKey);
+		} else {
+			List<String> keys = new ArrayList<>();
+	        keys.add(sKey);
+	        keys.add(nKey);
+	        Collections.sort(keys);
 
-	    resultData.append((eValue >= iValue) ? "E" : "I");
-	    resultData.append((sValue >= nValue) ? "S" : "N");
-	    resultData.append((fValue >= tValue) ? "F" : "T");
-	    resultData.append((jValue >= pValue) ? "J" : "P");
-	    
+	        resultData.append(keys.get(0));
+		}
+		
+		if (fValue > tValue) {
+			resultData.append(fKey);
+		} else if (fValue < tValue){
+			resultData.append(tKey);
+		} else {
+			List<String> keys = new ArrayList<>();
+	        keys.add(fKey);
+	        keys.add(tKey);
+	        Collections.sort(keys);
+
+	        resultData.append(keys.get(0));
+		}
+		
+		if (jValue > pValue) {
+			resultData.append(jKey);
+		} else if (jValue < pValue){
+			resultData.append(pKey);
+		} else {
+			List<String> keys = new ArrayList<>();
+	        keys.add(jKey);
+	        keys.add(pKey);
+	        Collections.sort(keys);
+
+	        resultData.append(keys.get(0));
+		}
+		
+
 	    String sortedResult = new String(resultData);
 	    return sortedResult;
 	}

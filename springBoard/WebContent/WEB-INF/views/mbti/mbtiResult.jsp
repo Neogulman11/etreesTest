@@ -10,16 +10,28 @@
 <body>
     <div align="center">
         <h2>당신의 유형은</h2>
-		<p><%= resultData %></p>
+        <p>결과: ${param.resultData}</p>
+
         <div align="center">
 			<button id="startBt" onclick="reStart()">처음으로</button>
 		</div>
     </div>
 </body>
 <script type="text/javascript">
+
 	function reStart()  {
 		window.location.href = "/mbti/mbtiMain.do";	
 	}
+	
+	
+	$j(document).ready(function() {
+		var serverResponse = '${session.getAttribute("resultData")}';
+		console.log("Server Response: " + serverResponse);
+		
+		
+        $j("#resultContainer").text(serverResponse);
+    });
+	
 	
 </script>
 </html>

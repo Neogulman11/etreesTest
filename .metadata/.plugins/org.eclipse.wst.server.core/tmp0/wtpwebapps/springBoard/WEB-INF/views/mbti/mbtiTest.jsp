@@ -123,6 +123,8 @@
 
             });
 
+	        
+
 	        var sessionData = {};
 
 	        for (var i = 0; i < sessionStorage.length; i++) {
@@ -138,8 +140,8 @@
 	            contentType: "application/json",
 	            success: function(response) {
 	            	var result = response.resultDataJson;
-
-	                window.location.href = "mbtiResult.do"; 
+	            	
+	            	window.location.href = "mbtiResult.do?resultData=" + result;
 	            },
 	            error: function(xhr, textStatus, errorThrown) {
 
