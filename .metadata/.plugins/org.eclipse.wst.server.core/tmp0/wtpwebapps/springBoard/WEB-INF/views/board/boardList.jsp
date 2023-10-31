@@ -19,8 +19,11 @@
 <body>
 <table  align="center">
 	<tr>
-		<td align="right">
-			total : ${totalCnt}
+		<td>
+			<a href="/board/boardList.do">login</a>
+			<a href="/board/userSignUp.do">join</a>	
+			<a style="float: right;">total : ${totalCnt}</a>
+
 		</td>
 	</tr>
 	<tr>

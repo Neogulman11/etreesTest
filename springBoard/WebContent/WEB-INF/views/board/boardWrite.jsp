@@ -55,14 +55,11 @@
 						</td>
 						<td width="400">
 					        <select name="boardType">
-					            <option value="EI">EI</option>
-					            <option value="IE">IE</option>
-					            <option value="NS">NS</option>
-					            <option value="SN">SN</option>
-					            <option value="FT">FT</option>
-					            <option value="TF">TF</option>
-					            <option value="JP">JP</option>
-					            <option value="PJ">PJ</option>
+					            <option value="a01">일반</option>
+					            <option value="a02">Q&A</option>
+					            <option value="a03">익명</option>
+					            <option value="a04">자유</option>
+
 					        </select>
 					    </td>
 					</tr> 

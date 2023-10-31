@@ -58,8 +58,7 @@ public class BoardController {
 	    String[] filtersArray = request.getParameterValues("filter");
 	    // 배열로 받은 값 List 형태로 변경
 	    List<String> filters = (filtersArray != null) ? Arrays.asList(filtersArray) : null;
-	    
-	    
+
 
 	    boardList = boardService.SelectBoardList(pageVo, filters);
 
