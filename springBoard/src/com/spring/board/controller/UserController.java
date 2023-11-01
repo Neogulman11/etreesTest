@@ -28,6 +28,7 @@ public class UserController {
 	@Autowired
 	userService userService;
 	
+	// 회원가입 폼
 	@RequestMapping(value = "/board/userSignUp.do", method = RequestMethod.GET)
 	public String signUpForm(Model model) throws Exception {
 		List<ComcodeVo> comcodeList = new ArrayList<ComcodeVo>();
@@ -37,6 +38,7 @@ public class UserController {
 		return "/board/userSignUp";
 	}
 	
+	// 회원가입 버튼 동작
 	@RequestMapping(value = "/board/MemberSignUp.do", method = RequestMethod.POST)
 	public String userSignUpAction(@ModelAttribute UserInfoVo userInfoVo) throws Exception {
 		int saveResult = userService.userSignUpAction(userInfoVo);
@@ -47,6 +49,7 @@ public class UserController {
         }
 	}
 	
+	// id중복체크 버튼
 	@RequestMapping(value = "/board/userInfo/id-check.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String idCheck(@RequestParam("userId") String userId) throws Exception {
@@ -55,12 +58,14 @@ public class UserController {
 		return checkrResult;
 	}
 	
+	// 로그인 폼
 	@RequestMapping(value = "/board/userLogIn.do", method = RequestMethod.GET)
 	public String logInForm() throws Exception {
 		
 		return "/board/userLogIn";
 	}
 	
+	// 로그인 버튼 동작
 	@RequestMapping(value = "/board/userLogIn.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String loginAction(@RequestParam("userId") String userId, @RequestParam("userPw") String userPw, HttpSession session) throws Exception {

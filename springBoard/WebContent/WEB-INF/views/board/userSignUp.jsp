@@ -99,7 +99,7 @@
 </table>
 </body>
 <script>
-	let idChecked = false; // 중복 확인 상태를 저장하는 변수
+	let idChecked = false; 
 
 	const idCheck = () => {
 		const userId = document.getElementById("userId").value;

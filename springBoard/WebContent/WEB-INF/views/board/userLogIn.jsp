@@ -9,7 +9,7 @@
 </head>
 <body>	
 <table align="center">
-	<form name="loginForm" >
+	<form name="loginForm">
 		<tr>
 			<td>
 				<table id="boardTable" border = "1">

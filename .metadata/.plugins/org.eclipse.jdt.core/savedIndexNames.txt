@@ -21,7 +21,6 @@ INDEX VERSION 1.134+C:\Users\etrees\eclipse-workspace\kim\.metadata\.plugins\org
 61819036.index
 73001794.index
 4183452460.index
-1393675087.index
 325404024.index
 293492632.index
 3718516409.index
