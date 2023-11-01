@@ -15,6 +15,12 @@
 	    
 	</resultMap>
 	
+	<resultMap type="com.spring.board.vo.ComcodeVo" id="comcodeVo" >
+		<id property="codeType" column="CODE_TYPE"/>
+        <id property="codeId" column="CODE_ID"/>
+        <result property="codeName" column="CODE_NAME"/>
+	</resultMap>
+	
 	<insert id="userSignUpAction" parameterType="com.spring.board.vo.UserInfoVo">
     	INSERT INTO 
     	USER_INFO
@@ -49,8 +55,21 @@
         )
     </insert>
     
-    <select id="findByUserId" parameterType="String" >
-        SELECT * FROM USER_INFO WHERE USER_ID=#{loginId}
+    <select id="findByUserId" parameterType="String" resultMap="UserInfoVo">
+        SELECT * FROM USER_INFO WHERE USER_ID=#{userId}
     </select>
 	
+	<select id="userPhoneSelectList" parameterType="com.spring.board.vo.ComcodeVo" resultMap="comcodeVo">
+    	SELECT 
+	    CODE_TYPE
+	    , CODE_ID
+	    , CODE_NAME
+	    FROM
+	    COM_CODE
+	    WHERE CODE_TYPE = 'phone'
+    </select>
+    
+    <select id="getUserInfo" parameterType="String" resultMap="UserInfoVo">
+        SELECT * FROM USER_INFO WHERE USER_ID=#{userId}
+    </select>
 </mapper>

@@ -20,7 +20,7 @@
 <table  align="center">
 	<tr>
 		<td>
-			<a href="/board/boardList.do">login</a>
+			<a href="/board/userLogIn.do">login</a>
 			<a href="/board/userSignUp.do">join</a>	
 			<a style="float: right;">total : ${totalCnt}</a>
 
