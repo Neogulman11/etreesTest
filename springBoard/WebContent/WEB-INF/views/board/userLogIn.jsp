@@ -38,7 +38,7 @@
 	</form>
 </table>
 </body>
-<script>
+<script  type="text/javascript">
 
 	function login() {
 	    var userId = document.getElementById('userId').value;

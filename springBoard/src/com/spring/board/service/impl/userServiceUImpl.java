@@ -35,8 +35,7 @@ public class userServiceUImpl implements userService{
 
 	@Override
 	public List<ComcodeVo> userPhoneSelectList(List<ComcodeVo> comcodeList) throws Exception {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub	
 		return userDao.userPhoneSelectList(comcodeList);
 	}
 

@@ -1,6 +1,7 @@
 package com.spring.board.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.spring.board.service.userService;
 import com.spring.board.vo.ComcodeVo;
 import com.spring.board.vo.UserInfoVo;
+import com.spring.common.CommonUtil;
 
 import net.sf.json.JSONObject;
 
@@ -38,18 +41,22 @@ public class UserController {
 		return "/board/userSignUp";
 	}
 	
-	// 회원가입 버튼 동작
-	@RequestMapping(value = "/board/MemberSignUp.do", method = RequestMethod.POST)
-	public String userSignUpAction(@ModelAttribute UserInfoVo userInfoVo) throws Exception {
-		int saveResult = userService.userSignUpAction(userInfoVo);
-		if (saveResult > 0) {
-            return "redirect:/board/userLogIn.do";
-        } else {
-            return "save";
-        }
+	//회원가입 버튼 동작버튼
+	@RequestMapping(value = "/board/userInfo/SignUpAction.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String userSignUpAction(UserInfoVo userInfoVo) throws Exception {
+		HashMap<String, String> result = new HashMap<String, String>();
+		CommonUtil commonUtil = new CommonUtil();
+		
+	    int saveResult = userService.userSignUpAction(userInfoVo);
+	
+	    result.put("success", (saveResult > 0)?"success":"Failed");
+	    String callbackMsg = commonUtil.getJsonCallBackString(" ",result);
+	    
+	    return callbackMsg;
 	}
 	
-	// id중복체크 버튼
+	// id체크 동작
 	@RequestMapping(value = "/board/userInfo/id-check.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String idCheck(@RequestParam("userId") String userId) throws Exception {
@@ -65,7 +72,7 @@ public class UserController {
 		return "/board/userLogIn";
 	}
 	
-	// 로그인 버튼 동작
+	// 로그인 검새 버튼
 	@RequestMapping(value = "/board/userLogIn.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String loginAction(@RequestParam("userId") String userId, @RequestParam("userPw") String userPw, HttpSession session) throws Exception {
